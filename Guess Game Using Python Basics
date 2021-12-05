@@ -1,0 +1,78 @@
+
+import random
+from nltk import flatten
+data=open("/content/guess word.txt","r+") # If coding in Google Colab put path address here 
+lines=data.readlines()
+lst=[]
+for line in lines:
+ a=line.split(" ")
+ lst.append(a)
+lst=flatten(lst)
+#print(lst)
+
+print("Welcome to Guess Game....")
+print("The word to be guessed is......................")
+
+def display_word():
+ wrd= random.randint(0,50)  
+ #print('wrd is',wrd)
+ an=lst[wrd] 
+ #print(a)
+ if(len(an)>=3):
+  for i in range(len(an)):  
+   lmt= random.randint(0,len(an)-4) 
+   if(lmt!=0):
+    print(an[i])
+   else:
+    print("_",)
+   chance=3
+   if(chance==0):
+    break
+ elif(len(an)<3):
+  for i in range(len(an)):  
+   lmt= random.randint(0,len(an)) 
+   if(lmt!=0):
+    print(an[i])
+   else:
+    print("_",)
+   chance=3
+   if(chance==0):
+
+    break   
+ chance=3 
+ while(chance>0):  
+  #print(list[wrd])
+  chance=chance-1
+  print("Attempt Remaining: ",chance)
+  user_entry=input("Enter full word with filled blanks:")
+  #check if assumed word is correct
+  if(user_entry==an):
+   print("\nWOW!...thats correct....")
+   break
+  else:
+    print("\nOoops!...better luck for next chance")
+ print("The Answer is:",an)
+
+
+display_word()
+-----------------------------------------------------------------CODE ENDS-------------------------------------------
+#sample output
+Welcome to Guess Game....
+The word to be guessed is......................
+n
+_
+g
+h
+t
+Attempt Remaining:  2
+Enter full word with filled blanks:i
+
+Ooops!...better luck for next chance
+Attempt Remaining:  1
+Enter full word with filled blanks:night
+
+WOW!...thats correct....
+The Answer is: night
+
+
+
